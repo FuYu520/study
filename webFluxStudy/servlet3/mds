@@ -1,0 +1,2 @@
+1，为什么要使用异步servlet？同步servlet阻塞了什么？
+tomcat容器的servlet线程
