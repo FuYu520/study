@@ -1,0 +1,77 @@
+spring:
+  application:
+    name: order
+  #选择加载的配置文件
+#  profiles:
+#    active: dev
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        #配置中心server 端在Eureka server上注册的名称
+        service-id: config
+      #git 分支
+      label: master
+      #去master分支下找order-dev.yml文件
+      profile: dev
+    stream:
+      bindings:
+        myMessage:
+          group: order
+          content-type: application/json
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+
+  redis:
+    host: localhost
+    port: 6379
+  zipkin:
+    base-url: http://127.0.0.1:9411/
+  sleuth:
+    sampler:
+      probability: 1.0
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 1000
+    productInfoList:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    username: root
+#    password: root
+#    url: jdbc:mysql://127.0.0.1/sell?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
+#PRODUCT:
+#  ribbon:
+#    NFLoadBalancerClassName: com.netflix.loadbalancer.RandomRule
+feign:
+  hystrix:
+    enabled: true
+#不配置访问会报错
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#       include: "hystrix.stream"
+#management:
+#  context-path: /
+logging:
+  level:
+    org.springframework.cloud.netflix: debug
+
+

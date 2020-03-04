@@ -1,0 +1,25 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+spring:
+  application:
+    name: config
+  #config配置
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/FuYu520/config-repo.git
+          #会在本地拉取远程git上的配置，目录可以自定义
+          #basedir: D:\javaCode\studyGit\springCloud\config\basedir
+          #定义为强制向git去拉取配置
+          #force-pull: true
+#          username: root
+#          password: root
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
