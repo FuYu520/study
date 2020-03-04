@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: user
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        #配置中心server 端在Eureka server上注册的名称
+        service-id: config
+      #git 分支
+      label: master
+      #去master分支下找order-dev.yml文件
+      profile: dev
